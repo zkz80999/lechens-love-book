@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>从九月开始 - 给你的一本小书</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="room">
+  <header class="book-header"><span>给最喜欢的你</span><h1>从九月开始</h1><span id="orientation">翻开一页</span></header>
+  <section class="stage" aria-label="我们的纪念相册"><div class="book-rig"><div id="book" class="book" data-page-width="480" data-page-height="600">
+    <article class="book-page art-page cloth cover" data-density="hard" aria-label="封面"><span class="cover-kicker">A LITTLE BOOK FOR YOU</span><h2 class="cover-title">从九月开始</h2><p class="cover-subtitle">乐辰宝，准备好翻开我们的故事了吗？</p><button id="cover-start" class="cover-start" type="button">开启我们的故事</button><span class="cover-water">SWEET MEMORIES</span><span class="cover-foot">2025.09 - TODAY</span></article>
+    <article class="book-page art-page endpaper" aria-label="扉页"><div class="ripple-mark">水波把光带到这里</div></article>
+    <article class="book-page art-page paper" aria-label="标题页"><div class="title-block"><p class="eyebrow">FOR MY GIRL</p><h2>你出现以后，<br>日子有了收藏的理由。</h2><p>从去年九月到现在，每一个关于你的画面，都值得被认真翻阅。</p></div><div class="lotus-line">&#10047;</div></article>
+    <article class="book-page art-page paper opening" aria-label="序言"><p class="chapter-no">01</p><h2>有你的日常，<br>也会发光。</h2><p>我想把那些不舍得忘记的瞬间，慢慢留给你。</p></article>
+    <article class="book-page art-page paper secret-page" aria-label="惊喜信"><p class="chapter-no">05</p><h2>这里藏着<br>一句只给你的话。</h2><button id="secret-letter" type="button">点开小惊喜</button><p>翻到最后不是结束，是想和你继续写下去。</p></article>
+    <article class="book-page art-page endpaper final-page" aria-label="尾页"><div class="ripple-mark"><strong>庄乐辰，</strong><br>在上海的时光幸好有你。<br><small>爱意会一圈一圈，抵达你。</small></div></article>
+    <article class="book-page art-page cloth back-cover" data-density="hard" aria-label="封底"><span class="back-mark">给庄乐辰，和我们还没写完的以后。</span><span>WITH ALL MY LOVE</span></article>
+  </div></div></section>
+  <footer class="controls" aria-label="翻页控制"><button id="previous" type="button" aria-label="上一页">&#8592;</button><div class="status" aria-live="polite"><span id="page-status">封面</span><small>拖动、点击或按方向键翻页</small></div><button id="next" type="button" aria-label="下一页">&#8594;</button></footer>
+</main>
+<dialog id="letter-dialog"><button class="close-letter" type="button" aria-label="关闭">&times;</button><p class="letter-tag">TO ZHUANG LECHEN</p><h2>庄乐辰，谢谢你来到我的生活里。</h2><p>从去年九月到今天，照片里留下的是一些瞬间，但我更想记住的是：每一个有你的日子，我都觉得很幸运。</p><p>在上海的时光幸好有你。我说过以后每一个节日都要跟你过，我们一起履行这个约定。</p><p class="letter-sign">我爱你。一直都是。</p></dialog>
+<script src="vendor/page-flip.browser.js"></script><script src="flipbook.js"></script>
+</body>
+</html>
