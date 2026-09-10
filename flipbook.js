@@ -5,9 +5,9 @@ const photos = [
   ["de270dc88b8aab3b56b21782cadfc91d.jpg","birthday","庄乐辰的生日蛋糕要甜甜的，因为你值得所有偏爱。"],["1003df7652e17f556abf63ecd1ea4151.jpg","birthday","乐辰宝举起酒杯的这一刻，我想祝你一直开心。"],["1b205f7e822d9eecd8f23f3817d70a35.jpg","birthday","宝宝的生日晚餐，每一口都是我们的小小庆祝。"],["3bb4919b07c61cd41ec71ad751c35adc.jpg","portrait","莎莎坐在暖暖的房间里，像一颗安静又闪亮的小糖。"],["9a7f1bf8bd06b8a17eefe972bd6071fb.jpg","portrait","宝贝穿着黑裙子的时候，连空气都变得心动。"],["a5e9c35f2f307c960f160feb36cda668.jpg","hotel","老婆自在坐着的样子，是我最想珍藏的日常。"],["ac329b0a1ca647adc06539b3db1eca55.jpg","hotel","乐辰宝站在镜前，漂亮得让我忘记了呼吸。"],["b6e337a6a976e7cbe8af3b17cba20934.jpg","hotel","宝宝坐在白色沙发上，像一团软软的云落进心里。"],["f538f7e70c4a1da9606bd0eeae464374.jpg","portrait","莎莎在夜色里回头，刚好撞进我的心里。"],["2a10dfae9c22c0b8bec36d19da0226f4.jpg","dinner","宝贝的花和晚餐，都是我想认真送给你的浪漫。"],["0ae8d46f8ed0fe0f2232016921f023f3.jpg","dinner","老婆在夜晚的小院里，和我一起把以后慢慢写完。"]
 ];
 const bookElement = document.querySelector("#book"); const secretPage = document.querySelector(".secret-page");
-const assetVersion = "wechat-mobile-1";
+const assetVersion = "wechat-mobile-2";
 function chapter(number,title,copy,kind) { const page = document.createElement("article"); page.className = `book-page art-page chapter-page ${kind}`; page.innerHTML = `<p class="chapter-no">${number}</p><h2>${title}</h2><p>${copy}</p><div class="wave-rule"></div>`; return page; }
-photos.forEach((photo,index) => { if (index === 8) bookElement.insertBefore(chapter("02","海风、落日，<br>还有你。","远方的颜色很好看，但你在画面里，才是最好的风景。","beach"),secretPage); if (index === 15) bookElement.insertBefore(chapter("03","花影和风，<br>都偏爱你。","你总能把一个平常的瞬间，变成我想收藏很久的画面。","blossom"),secretPage); if (index === 22) bookElement.insertBefore(chapter("04","愿你每一次许愿，<br>都有我在旁边。","生日快乐不只是一句祝福，是我希望你一直被爱着。","birthday"),secretPage); const page = document.createElement("article"); page.className = `book-page art-page photo-page ${photo[1]}`; page.setAttribute("aria-label",`纪念照片 ${index + 1}`); page.innerHTML = `<figure><img data-src="assets/photos/${photo[0]}?v=${assetVersion}" alt="纪念照片 ${index + 1}" loading="lazy" decoding="async"></figure><p class="caption">乐辰宝ovo</p><span class="folio">${String(index + 1).padStart(2,"0")}</span>`; bookElement.insertBefore(page,secretPage); });
+photos.forEach((photo,index) => { if (index === 8) bookElement.insertBefore(chapter("02","海风、落日，<br>还有你。","远方的颜色很好看，但你在画面里，才是最好的风景。","beach"),secretPage); if (index === 15) bookElement.insertBefore(chapter("03","花影和风，<br>都偏爱你。","你总能把一个平常的瞬间，变成我想收藏很久的画面。","blossom"),secretPage); if (index === 22) bookElement.insertBefore(chapter("04","愿你每一次许愿，<br>都有我在旁边。","生日快乐不只是一句祝福，是我希望你一直被爱着。","birthday"),secretPage); const page = document.createElement("article"); page.className = `book-page art-page photo-page ${photo[1]}`; page.setAttribute("aria-label",`纪念照片 ${index + 1}`); page.innerHTML = `<figure><img data-src="assets/photos/${photo[0]}?v=${assetVersion}" alt="纪念照片 ${index + 1}" loading="eager" decoding="async"></figure><p class="caption">乐辰宝ovo</p><span class="folio">${String(index + 1).padStart(2,"0")}</span>`; bookElement.insertBefore(page,secretPage); });
 
 const pages = [...bookElement.querySelectorAll(".book-page")];
 const previousButton = document.querySelector("#previous");
@@ -49,6 +49,13 @@ function loadNearbyPhotos(pageIndex) {
   }
 }
 
+function loadAllPhotos() {
+  pages.forEach((page,index)=>{
+    const img = page.querySelector("img[data-src]");
+    loadPhoto(img,index<5?"high":"auto");
+  });
+}
+
 const pageFlip = new St.PageFlip(bookElement,{
   width:runtimeWidth,
   height:runtimeHeight,
@@ -81,7 +88,7 @@ pageFlip.on("init",event=>updateOrientation(event.data.mode));
 pageFlip.on("changeOrientation",event=>updateOrientation(event.data));
 const requestedPage=Number(new URLSearchParams(location.search).get("page"));
 const initialPage=Number.isInteger(requestedPage)&&requestedPage>=0&&requestedPage<pages.length?requestedPage:0;
-loadNearbyPhotos(initialPage);
+loadAllPhotos();
 pageFlip.loadFromHTML(pages);
 if(initialPage>0)pageFlip.turnToPage(initialPage);
 updateControls();
