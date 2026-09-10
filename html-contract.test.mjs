@@ -45,3 +45,13 @@ test("vendored runtime and photo directory exist", async () => {
   assert.equal((await stat(new URL("vendor/page-flip.browser.js", root))).isFile(), true);
   assert.equal((await stat(new URL("assets/photos/", root))).isDirectory(), true);
 });
+
+test("mobile photos are loaded on demand", () => {
+  assert.match(script, /data-src="assets\/photos\//);
+  assert.match(script, /loading="lazy"/);
+  assert.match(script, /loadNearbyPhotos/);
+  assert.match(script, /MicroMessenger/);
+  assert.match(script, /drawShadow:!compactViewport/);
+  assert.match(script, /minWidth:compactViewport\?runtimeWidth/);
+  assert.doesNotMatch(script, /<img src="assets\/photos\//);
+});

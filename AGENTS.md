@@ -16,3 +16,4 @@
 - Preserve the bundled PageFlip runtime and its source attribution/license.
 - Art direction: cute Japanese-inspired candy colors, bows/hearts/stars, and scene-specific affectionate captions. Do not use third-party character artwork or branding.
 - A Quick Tunnel is public to anyone who holds its randomized URL and ends when the local tunnel process or computer stops.
+- Mobile and WeChat builds keep photo copies at 1080px or below, load only nearby pages, and disable heavy page shadows on compact screens.
